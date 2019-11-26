@@ -27,18 +27,14 @@
         <LoadedDesigner Value="True"/>
       </Unit1>
     </Units>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> parent of 5c97be7... revert teste
     <JumpHistory Count="2" HistoryIndex="1">
-=======
-    <JumpHistory Count="1">
->>>>>>> parent of 6ce68ef... teste
       <Position1>
         <Filename Value="unit1.pas"/>
       </Position1>
+      <Position2>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="14" Column="24"/>
+      </Position2>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
