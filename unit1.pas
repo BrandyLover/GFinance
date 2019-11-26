@@ -5,18 +5,25 @@ unit Unit1;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ComCtrls;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ComCtrls, Menus,
+  StdCtrls, ExtCtrls, ValEdit, Grids;
 
 type
 
   { TForm1 }
 
   TForm1 = class(TForm)
-    PageControl1: TPageControl;
+    Button1: TButton;
+    btAddReceita: TButton;
+    gbRecei: TGroupBox;
+    ListBox1: TListBox;
+    pgGFinance: TPageControl;
+    TabelRecei: TStringGrid;
     TSGeral: TTabSheet;
     TSRecei: TTabSheet;
     TSDespe: TTabSheet;
     TSTransfe: TTabSheet;
+    procedure btAddReceGeralClick(Sender: TObject);
   private
 
   public
@@ -29,6 +36,13 @@ var
 implementation
 
 {$R *.lfm}
+
+{ TForm1 }
+
+procedure TForm1.btAddReceGeralClick(Sender: TObject);
+begin
+  pgGFinance.ActivePage:= TSRecei;
+end;
 
 end.
 
