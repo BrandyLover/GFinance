@@ -12,7 +12,11 @@ type
   { TForm1 }
 
   TForm1 = class(TForm)
-
+    PageControl1: TPageControl;
+    TSGeral: TTabSheet;
+    TSRecei: TTabSheet;
+    TSDespe: TTabSheet;
+    TSTransfe: TTabSheet;
   private
 
   public
@@ -25,11 +29,6 @@ var
 implementation
 
 {$R *.lfm}
-
-{ TForm1 }
-
-
-
 
 end.
 
