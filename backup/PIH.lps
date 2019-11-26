@@ -20,8 +20,12 @@
         <ComponentName Value="Form1"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+<<<<<<< HEAD
         <UnitName Value="Unit1"/>
         <CursorPos X="24" Y="14"/>
+=======
+        <IsVisibleTab Value="True"/>
+>>>>>>> parent of 165d761... First UI Draft
         <UsageCount Value="20"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -35,6 +39,7 @@
         <Loaded Value="True"/>
       </Unit2>
     </Units>
+<<<<<<< HEAD
     <JumpHistory Count="2" HistoryIndex="1">
       <Position1>
         <Filename Value="unit1.pas"/>
@@ -44,6 +49,9 @@
         <Caret Line="14" Column="24"/>
       </Position2>
     </JumpHistory>
+=======
+    <JumpHistory HistoryIndex="-1"/>
+>>>>>>> parent of 165d761... First UI Draft
     <RunParams>
       <FormatVersion Value="2"/>
       <Modes Count="0" ActiveMode=""/>

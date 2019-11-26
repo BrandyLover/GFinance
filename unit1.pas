@@ -5,19 +5,10 @@ unit Unit1;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ComCtrls, ExtCtrls;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs;
 
 type
-
-  { TForm1 }
-
   TForm1 = class(TForm)
-    PageControl1: TPageControl;
-    TabSheet1: TTabSheet;
-    TabSheet2: TTabSheet;
-    TabSheet3: TTabSheet;
-    TabSheet4: TTabSheet;
-
   private
 
   public
@@ -30,11 +21,6 @@ var
 implementation
 
 {$R *.lfm}
-
-{ TForm1 }
-
-
-
 
 end.
 
