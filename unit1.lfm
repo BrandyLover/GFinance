@@ -1,95 +1,125 @@
-object Form1: TForm1
-  Left = 396
-  Height = 590
-  Top = 177
-  Width = 843
+object MainForm: TMainForm
+  Left = 457
+  Height = 338
+  Top = 173
+  Width = 787
   BorderStyle = bsSingle
   Caption = 'GFinance'
-  ClientHeight = 590
-  ClientWidth = 843
+  ClientHeight = 338
+  ClientWidth = 787
   LCLVersion = '2.0.2.0'
   object pgGFinance: TPageControl
     Left = 0
-    Height = 590
+    Height = 338
     Top = 0
-    Width = 843
+    Width = 787
     ActivePage = TSRecei
     Align = alClient
     TabIndex = 1
     TabOrder = 0
+    OnChange = pgGFinanceChange
     object TSGeral: TTabSheet
       Caption = 'Balanço Geral'
     end
     object TSRecei: TTabSheet
       Caption = 'Receitas'
-      ClientHeight = 562
-      ClientWidth = 835
-      object ListBox1: TListBox
-        Left = 448
-        Height = 216
-        Top = 16
-        Width = 264
-        ItemHeight = 0
-        TabOrder = 0
-      end
-      object Button1: TButton
-        Left = 448
-        Height = 32
-        Top = 240
-        Width = 267
-        Caption = 'Button1'
-        TabOrder = 1
-      end
+      ClientHeight = 310
+      ClientWidth = 779
       object gbRecei: TGroupBox
         Left = 8
-        Height = 281
+        Height = 282
         Top = 24
-        Width = 377
+        Width = 417
         Caption = 'Receitas'
-        ClientHeight = 261
-        ClientWidth = 373
-        TabOrder = 2
+        ClientHeight = 262
+        ClientWidth = 413
+        TabOrder = 0
+        OnClick = gbReceiClick
         object btAddReceita: TButton
           Left = 8
           Height = 32
           Top = 224
-          Width = 360
+          Width = 400
           Caption = 'Adicionar Novo Item'
+          OnClick = btAddReceitaClick
           TabOrder = 0
         end
         object TabelRecei: TStringGrid
           Left = 7
-          Height = 224
+          Height = 216
           Top = 0
-          Width = 361
+          Width = 401
           AutoFillColumns = True
           ColCount = 4
           Columns = <          
             item
               Title.Caption = 'Data'
-              Width = 89
+              Width = 99
             end          
             item
               Title.Caption = 'Identificação'
-              Width = 89
+              Width = 99
             end          
             item
               Title.Caption = 'Conta'
-              Width = 89
+              Width = 99
             end          
             item
               Title.Caption = 'Valor'
-              Width = 90
+              Width = 100
             end>
           FixedCols = 0
+          RowCount = 1
           ScrollBars = ssAutoVertical
           TabOrder = 1
           ColWidths = (
-            89
-            89
-            89
-            90
+            99
+            99
+            99
+            100
           )
+        end
+      end
+      object gbConta: TGroupBox
+        Left = 433
+        Height = 282
+        Top = 24
+        Width = 335
+        Caption = 'Contas'
+        ClientHeight = 262
+        ClientWidth = 331
+        TabOrder = 1
+        object lbConta: TListBox
+          Left = 8
+          Height = 256
+          Top = 0
+          Width = 192
+          ItemHeight = 0
+          TabOrder = 0
+        end
+        object edNewConta: TEdit
+          Left = 208
+          Height = 23
+          Top = 8
+          Width = 120
+          TabOrder = 1
+        end
+        object btAddConta: TButton
+          Left = 208
+          Height = 25
+          Top = 40
+          Width = 120
+          Caption = 'Adicionar Conta'
+          OnClick = btAddContaClick
+          TabOrder = 2
+        end
+        object btDelSel: TButton
+          Left = 208
+          Height = 25
+          Top = 80
+          Width = 120
+          Caption = 'Deletar Conta Selec.'
+          TabOrder = 3
         end
       end
     end
