@@ -1,46 +1,45 @@
 object MainForm: TMainForm
-  Left = 457
-  Height = 338
-  Top = 173
-  Width = 787
+  Left = 387
+  Height = 337
+  Top = 188
+  Width = 784
   BorderStyle = bsSingle
   Caption = 'GFinance'
-  ClientHeight = 338
-  ClientWidth = 787
+  ClientHeight = 337
+  ClientWidth = 784
   LCLVersion = '2.0.2.0'
   object pgGFinance: TPageControl
     Left = 0
-    Height = 338
+    Height = 337
     Top = 0
-    Width = 787
-    ActivePage = TSRecei
+    Width = 784
+    ActivePage = TSTransfe
     Align = alClient
-    TabIndex = 1
+    TabIndex = 3
     TabOrder = 0
     OnChange = pgGFinanceChange
     object TSGeral: TTabSheet
       Caption = 'Balanço Geral'
     end
     object TSRecei: TTabSheet
-      Caption = 'Receitas'
-      ClientHeight = 310
-      ClientWidth = 779
+      Caption = 'Entradas'
+      ClientHeight = 309
+      ClientWidth = 776
       object gbRecei: TGroupBox
         Left = 8
         Height = 282
         Top = 24
         Width = 417
-        Caption = 'Receitas'
+        Caption = 'Entradas'
         ClientHeight = 262
         ClientWidth = 413
         TabOrder = 0
-        OnClick = gbReceiClick
         object btAddReceita: TButton
           Left = 8
           Height = 32
           Top = 224
           Width = 400
-          Caption = 'Adicionar Novo Item'
+          Caption = 'Adicionar Nova Entrada'
           OnClick = btAddReceitaClick
           TabOrder = 0
         end
@@ -119,15 +118,131 @@ object MainForm: TMainForm
           Top = 80
           Width = 120
           Caption = 'Deletar Conta Selec.'
+          OnClick = btDelSelClick
           TabOrder = 3
         end
       end
     end
     object TSDespe: TTabSheet
-      Caption = 'Despesas'
+      Caption = 'Saídas'
+      ClientHeight = 309
+      ClientWidth = 776
+      object gbSai: TGroupBox
+        Left = 8
+        Height = 296
+        Top = 8
+        Width = 760
+        Caption = 'Saídas'
+        ClientHeight = 276
+        ClientWidth = 756
+        TabOrder = 0
+        object btAddSai: TButton
+          Left = 9
+          Height = 34
+          Top = 238
+          Width = 743
+          Caption = 'Adicionar Nova Saída'
+          TabOrder = 0
+        end
+        object TabelSai: TStringGrid
+          Left = 7
+          Height = 230
+          Top = 0
+          Width = 745
+          AutoFillColumns = True
+          ColCount = 4
+          Columns = <          
+            item
+              Title.Caption = 'Data'
+              Width = 185
+            end          
+            item
+              Title.Caption = 'Identificação'
+              Width = 185
+            end          
+            item
+              Title.Caption = 'Conta'
+              Width = 185
+            end          
+            item
+              Title.Caption = 'Valor'
+              Width = 186
+            end>
+          FixedCols = 0
+          RowCount = 1
+          ScrollBars = ssAutoVertical
+          TabOrder = 1
+          ColWidths = (
+            185
+            185
+            185
+            186
+          )
+        end
+      end
     end
     object TSTransfe: TTabSheet
       Caption = 'Transferências'
+      ClientHeight = 309
+      ClientWidth = 776
+      object gbTransf: TGroupBox
+        Left = 8
+        Height = 296
+        Top = 8
+        Width = 760
+        Caption = 'Saídas'
+        ClientHeight = 276
+        ClientWidth = 756
+        TabOrder = 0
+        object btAddTransf: TButton
+          Left = 9
+          Height = 34
+          Top = 238
+          Width = 743
+          Caption = 'Adicionar Nova Transferência'
+          OnClick = btAddTransfClick
+          TabOrder = 0
+        end
+        object TabelTransf: TStringGrid
+          Left = 7
+          Height = 230
+          Top = 0
+          Width = 745
+          AutoFillColumns = True
+          Columns = <          
+            item
+              Title.Caption = 'Data'
+              Width = 148
+            end          
+            item
+              Title.Caption = 'Identificação'
+              Width = 148
+            end          
+            item
+              Title.Caption = 'Conta de Saída'
+              Width = 148
+            end          
+            item
+              Title.Caption = 'Conta de Entrada'
+              Width = 148
+            end          
+            item
+              Title.Caption = 'Valor'
+              Width = 149
+            end>
+          FixedCols = 0
+          RowCount = 1
+          ScrollBars = ssAutoVertical
+          TabOrder = 1
+          ColWidths = (
+            148
+            148
+            148
+            148
+            149
+          )
+        end
+      end
     end
   end
 end

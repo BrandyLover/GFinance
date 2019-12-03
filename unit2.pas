@@ -9,9 +9,9 @@ uses
 
 type
 
-  { TnewItemForm }
+  { TnewEntryForm }
 
-  TnewItemForm = class(TForm)
+  TnewEntryForm = class(TForm)
     btOk: TButton;
     btCancel: TButton;
     cbContas: TComboBox;
@@ -31,24 +31,23 @@ type
   end;
 
 var
-  newItemForm: TnewItemForm;
+  newEntryForm: TnewEntryForm;
 
 
 implementation
-uses
-  Unit1;
+
 
 {$R *.lfm}
 
-{ TnewItemForm }
+{ TnewEntryForm }
 
-procedure TnewItemForm.btCancelClick(Sender: TObject);
+procedure TnewEntryForm.btCancelClick(Sender: TObject);
 begin
      AddItemFlag:=FALSE;
      Close;
 end;
 
-procedure TnewItemForm.btOkClick(Sender: TObject);
+procedure TnewEntryForm.btOkClick(Sender: TObject);
 begin
      AddItemFlag:=TRUE;
      Close;

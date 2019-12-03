@@ -15,13 +15,19 @@ type
   TMainForm = class(TForm)
     btAddReceita: TButton;
     btAddConta: TButton;
+    btAddSai: TButton;
+    btAddTransf: TButton;
     btDelSel: TButton;
     edNewConta: TEdit;
     gbRecei: TGroupBox;
     gbConta: TGroupBox;
+    gbSai: TGroupBox;
+    gbTransf: TGroupBox;
     lbConta: TListBox;
     pgGFinance: TPageControl;
     TabelRecei: TStringGrid;
+    TabelSai: TStringGrid;
+    TabelTransf: TStringGrid;
     TSGeral: TTabSheet;
     TSRecei: TTabSheet;
     TSDespe: TTabSheet;
@@ -29,7 +35,9 @@ type
     procedure btAddContaClick(Sender: TObject);
     procedure btAddReceGeralClick(Sender: TObject);
     procedure btAddReceitaClick(Sender: TObject);
-    procedure gbReceiClick(Sender: TObject);
+    procedure btAddTransfClick(Sender: TObject);
+    procedure btDelSelClick(Sender: TObject);
+
     procedure pgGFinanceChange(Sender: TObject);
 
 
@@ -44,7 +52,7 @@ var
 
 implementation
 uses
-    Unit2;
+    Unit2,Unit3;
 
 {$R *.lfm}
 
@@ -65,22 +73,39 @@ end;
 
 procedure TMainForm.btAddReceitaClick(Sender: TObject);
 begin
-
-  newItemForm.cbContas.Items:=lbConta.Items;
-  newItemForm.cbContas.ItemIndex:=0;
-  newItemForm.cbContas.ReadOnly:=TRUE;
-  newItemForm.ShowModal;
-  if (newItemForm.CloseQuery) AND (newItemForm.AddItemFlag) then
-     begin
-          TabelRecei.InsertRowWithValues(TabelRecei.RowCount,[newItemForm.edData.Text,newItemForm.edID.Text,newItemForm.cbContas.Text,'R$ '+newItemForm.edVal.Text]);
-     end;
+      newEntryForm.edVal.Clear;
+      newEntryForm.edID.Clear;
+      newEntryForm.edData.Clear;
+      newEntryForm.cbContas.Items:=lbConta.Items;
+      newEntryForm.cbContas.ItemIndex:=0;
+      newEntryForm.cbContas.ReadOnly:=TRUE;
+      newEntryForm.ShowModal;
+      if (newEntryForm.CloseQuery) AND (newEntryForm.AddItemFlag) then
+         begin
+              TabelRecei.InsertRowWithValues(TabelRecei.RowCount,[newEntryForm.edData.Text,newEntryForm.edID.Text,newEntryForm.cbContas.Text,'R$ '+newEntryForm.edVal.Text]);
+         end;
 
 end;
 
-procedure TMainForm.gbReceiClick(Sender: TObject);
+procedure TMainForm.btAddTransfClick(Sender: TObject);
+begin
+      newTransfForm.edVal.Clear;
+      newTransfForm.edID.Clear;
+      newTransfForm.edData.Clear;
+      newTransfForm.cbContaEntry.Items:=lbConta.Items;
+      newTransfForm.cbContaEntry.ItemIndex:=0;
+      newTransfForm.cbContaEntry.ReadOnly:=TRUE;
+      newTransfForm.cbContaExit.Items:=lbConta.Items;
+      newTransfForm.cbContaExit.ItemIndex:=0;
+      newTransfForm.ShowModal;
+end;
+
+procedure TMainForm.btDelSelClick(Sender: TObject);
 begin
 
 end;
+
+
 
 procedure TMainForm.pgGFinanceChange(Sender: TObject);
 begin

@@ -27,7 +27,7 @@ type
   private
 
   public
-  AddItemFlag : Boolean = FALSE;
+  AddItemFlag : Boolean ;
   end;
 
 var
