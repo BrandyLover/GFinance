@@ -1,21 +1,21 @@
 object MainForm: TMainForm
-  Left = 387
-  Height = 337
-  Top = 188
+  Left = 553
+  Height = 339
+  Top = 285
   Width = 784
   BorderStyle = bsSingle
   Caption = 'GFinance'
-  ClientHeight = 337
+  ClientHeight = 339
   ClientWidth = 784
-  LCLVersion = '2.0.2.0'
+  LCLVersion = '2.0.4.0'
   object pgGFinance: TPageControl
     Left = 0
-    Height = 337
+    Height = 339
     Top = 0
     Width = 784
-    ActivePage = TSTransfe
+    ActivePage = TSRecei
     Align = alClient
-    TabIndex = 3
+    TabIndex = 1
     TabOrder = 0
     OnChange = pgGFinanceChange
     object TSGeral: TTabSheet
@@ -23,7 +23,7 @@ object MainForm: TMainForm
     end
     object TSRecei: TTabSheet
       Caption = 'Entradas'
-      ClientHeight = 309
+      ClientHeight = 311
       ClientWidth = 776
       object gbRecei: TGroupBox
         Left = 8
@@ -71,6 +71,7 @@ object MainForm: TMainForm
           RowCount = 1
           ScrollBars = ssAutoVertical
           TabOrder = 1
+          OnKeyDown = TabelReceiKeyDown
           ColWidths = (
             99
             99
@@ -101,6 +102,7 @@ object MainForm: TMainForm
           Height = 23
           Top = 8
           Width = 120
+          OnKeyDown = edNewContaKeyDown
           TabOrder = 1
         end
         object btAddConta: TButton
@@ -125,7 +127,7 @@ object MainForm: TMainForm
     end
     object TSDespe: TTabSheet
       Caption = 'Saídas'
-      ClientHeight = 309
+      ClientHeight = 311
       ClientWidth = 776
       object gbSai: TGroupBox
         Left = 8
@@ -183,7 +185,7 @@ object MainForm: TMainForm
     end
     object TSTransfe: TTabSheet
       Caption = 'Transferências'
-      ClientHeight = 309
+      ClientHeight = 311
       ClientWidth = 776
       object gbTransf: TGroupBox
         Left = 8

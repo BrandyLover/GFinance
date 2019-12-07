@@ -37,8 +37,12 @@ type
     procedure btAddReceitaClick(Sender: TObject);
     procedure btAddTransfClick(Sender: TObject);
     procedure btDelSelClick(Sender: TObject);
+    procedure edNewContaKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
 
     procedure pgGFinanceChange(Sender: TObject);
+    procedure TabelReceiKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
 
 
   private
@@ -78,23 +82,39 @@ begin
       newEntryForm.edData.Clear;
       newEntryForm.cbContas.Items:=lbConta.Items;
       newEntryForm.cbContas.ItemIndex:=0;
-      newEntryForm.cbContas.ReadOnly:=TRUE;
+      newEntryForm.cbContas.Style:=csDropDownList;
       newEntryForm.ShowModal;
-      if (newEntryForm.CloseQuery) AND (newEntryForm.AddItemFlag) then
+      if (newEntryForm.CloseQuery) AND (newEntryForm.AddItemFlag)  then
          begin
               TabelRecei.InsertRowWithValues(TabelRecei.RowCount,[newEntryForm.edData.Text,newEntryForm.edID.Text,newEntryForm.cbContas.Text,'R$ '+newEntryForm.edVal.Text]);
          end;
+
 
 end;
 
 procedure TMainForm.btAddTransfClick(Sender: TObject);
 begin
-
+      newTransfForm.edVal.Clear;
+      newTransfForm.edID.Clear;
+      newTransfForm.edData.Clear;
+      newTransfForm.cbContaEntry.Items:=lbConta.Items;
+      newTransfForm.cbContaEntry.ItemIndex:=0;
+      newTransfForm.cbContaEntry.Style:=csDropDownList;
+      newTransfForm.cbContaExit.Items:=lbConta.Items;
+      newTransfForm.cbContaExit.ItemIndex:=0;
+      newTransfForm.ShowModal;
 end;
 
 procedure TMainForm.btDelSelClick(Sender: TObject);
 begin
+      lbConta.DeleteSelected;
+end;
 
+procedure TMainForm.edNewContaKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if Key = 13 then
+     btAddContaClick(Sender);
 end;
 
 
@@ -102,6 +122,13 @@ end;
 procedure TMainForm.pgGFinanceChange(Sender: TObject);
 begin
 
+end;
+
+procedure TMainForm.TabelReceiKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if Key = 13 then
+     btAddReceitaClick(Sender);
 end;
 
 

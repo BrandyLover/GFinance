@@ -1,12 +1,12 @@
 object newTransfForm: TnewTransfForm
-  Left = 379
+  Left = 594
   Height = 161
-  Top = 529
+  Top = 485
   Width = 618
   Caption = 'Adicionar nova transferência'
   ClientHeight = 161
   ClientWidth = 618
-  LCLVersion = '2.0.2.0'
+  LCLVersion = '2.0.4.0'
   object btOk: TButton
     Left = 128
     Height = 25
@@ -24,7 +24,7 @@ object newTransfForm: TnewTransfForm
     OnClick = btCancelClick
     TabOrder = 1
   end
-  object cbContas: TComboBox
+  object cbContaEntry: TComboBox
     Left = 288
     Height = 23
     Top = 62
@@ -42,7 +42,7 @@ object newTransfForm: TnewTransfForm
     ParentColor = False
   end
   object edVal: TEdit
-    Left = 504
+    Left = 528
     Height = 23
     Top = 62
     Width = 80
@@ -79,14 +79,14 @@ object newTransfForm: TnewTransfForm
     ParentColor = False
   end
   object Label4: TLabel
-    Left = 504
+    Left = 528
     Height = 15
     Top = 40
     Width = 30
     Caption = 'Valor:'
     ParentColor = False
   end
-  object cbContas1: TComboBox
+  object cbContaExit: TComboBox
     Left = 400
     Height = 23
     Top = 62
@@ -102,5 +102,20 @@ object newTransfForm: TnewTransfForm
     Width = 94
     Caption = 'Conta de Entrada:'
     ParentColor = False
+  end
+  object Label6: TLabel
+    Left = 504
+    Height = 21
+    Top = 62
+    Width = 19
+    Caption = 'R$'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -16
+    Font.Name = 'Segoe UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentColor = False
+    ParentFont = False
   end
 end

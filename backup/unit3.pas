@@ -14,8 +14,8 @@ type
   TnewTransfForm = class(TForm)
     btCancel: TButton;
     btOk: TButton;
-    cbContas: TComboBox;
-    cbContas1: TComboBox;
+    cbContaEntry: TComboBox;
+    cbContaExit: TComboBox;
     edData: TEdit;
     edID: TEdit;
     edVal: TEdit;
@@ -24,6 +24,7 @@ type
     Label3: TLabel;
     Label4: TLabel;
     Label5: TLabel;
+    Label6: TLabel;
     procedure btCancelClick(Sender: TObject);
   private
 
