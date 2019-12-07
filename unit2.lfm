@@ -1,14 +1,14 @@
 object newEntryForm: TnewEntryForm
-  Left = 588
+  Left = 983
   Height = 162
-  Top = 374
+  Top = 575
   Width = 580
   Caption = 'Adicionar nova entrada'
   ClientHeight = 162
   ClientWidth = 580
   OnKeyDown = FormKeyDown
   ParentBiDiMode = False
-  LCLVersion = '2.0.4.0'
+  LCLVersion = '1.8.4.0'
   object btOk: TButton
     Left = 168
     Height = 25

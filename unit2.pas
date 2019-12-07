@@ -59,7 +59,7 @@ var
   valor : Double;
   data : TDateTime;
 begin
-     if  NOT(TryStrToFloat(newEntryForm.edVal.Text, valor)) then
+     if  NOT(TryStrToFloat(edVal.Text, valor)) then
          begin
          ShowMessage('Valor de moeda inválido');
          edVal.SetFocus;
@@ -69,12 +69,17 @@ begin
          ShowMessage('Valor de data inválida');
          edData.SetFocus;
          end
-     else if (newEntryForm.cbContas.Text = '') then
+     else if (Length(edData2.Text) < 4) or (Length(edData2.Text) > 4) then
+          begin
+            ShowMessage('Valor de Ano inválido');
+            edData2.SetFocus;
+          end
+     else if (cbContas.Text = '') then
          begin
          ShowMessage('Selecione uma conta');
          cbContas.SetFocus;
          end
-     else if (newEntryForm.edID.Text = '') then
+     else if (edID.Text = '') then
          begin
          ShowMessage('Mensagem de identificação inválida, adicione uma mensagem');
          edID.SetFocus;

@@ -1,25 +1,108 @@
 object MainForm: TMainForm
-  Left = 514
+  Left = 902
   Height = 339
-  Top = 273
+  Top = 241
   Width = 784
   BorderStyle = bsSingle
   Caption = 'GFinance'
   ClientHeight = 339
   ClientWidth = 784
-  LCLVersion = '2.0.4.0'
+  LCLVersion = '1.8.4.0'
   object pgGFinance: TPageControl
     Left = 0
     Height = 339
     Top = 0
     Width = 784
-    ActivePage = TSRecei
+    ActivePage = TSGeral
     Align = alClient
-    TabIndex = 1
+    TabIndex = 0
     TabOrder = 0
     OnChange = pgGFinanceChange
     object TSGeral: TTabSheet
       Caption = 'Balanço Geral'
+      ClientHeight = 311
+      ClientWidth = 776
+      object LbSaldoEmConta: TListBox
+        Left = 32
+        Height = 241
+        Top = 24
+        Width = 171
+        ItemHeight = 0
+        TabOrder = 0
+      end
+      object ListBox1: TListBox
+        Left = 544
+        Height = 241
+        Top = 24
+        Width = 176
+        ItemHeight = 0
+        TabOrder = 1
+      end
+      object LbSCS: TLabel
+        Left = 216
+        Height = 25
+        Top = 40
+        Width = 191
+        Caption = 'Saldo Conta Selec: R$'
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -19
+        Font.Name = 'Segoe UI'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        Font.Style = [fsBold]
+        ParentColor = False
+        ParentFont = False
+      end
+      object lbSaldoSelec: TLabel
+        Left = 417
+        Height = 1
+        Top = 40
+        Width = 1
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -19
+        Font.Name = 'Segoe UI'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        Font.Style = [fsBold]
+        ParentColor = False
+        ParentFont = False
+      end
+      object BtBGTransf: TButton
+        Left = 232
+        Height = 25
+        Top = 112
+        Width = 123
+        Caption = 'Nova Transferência'
+        OnClick = BtBGTransfClick
+        TabOrder = 2
+      end
+      object BtBGDespesa: TButton
+        Left = 232
+        Height = 25
+        Top = 144
+        Width = 123
+        Caption = 'Nova Despesa'
+        OnClick = BtBGDespesaClick
+        TabOrder = 3
+      end
+      object BtBGEntrada: TButton
+        Left = 232
+        Height = 25
+        Top = 176
+        Width = 123
+        Caption = 'Nova Entrada'
+        OnClick = BtBGEntradaClick
+        TabOrder = 4
+      end
+      object btBGConta: TButton
+        Left = 232
+        Height = 25
+        Top = 208
+        Width = 123
+        Caption = 'Nova Conta'
+        OnClick = btBGContaClick
+        TabOrder = 5
+      end
     end
     object TSRecei: TTabSheet
       Caption = 'Entradas'
@@ -91,7 +174,7 @@ object MainForm: TMainForm
         TabOrder = 1
         object lbConta: TListBox
           Left = 8
-          Height = 159
+          Height = 247
           Top = 2
           Width = 192
           ItemHeight = 0
@@ -123,22 +206,6 @@ object MainForm: TMainForm
           Caption = 'Deletar Conta Selec.'
           OnClick = btDelSelClick
           TabOrder = 3
-        end
-        object Label1: TLabel
-          Left = 8
-          Height = 25
-          Top = 176
-          Width = 191
-          Caption = 'Saldo Conta Selec: R$'
-          Font.CharSet = ANSI_CHARSET
-          Font.Color = clBlack
-          Font.Height = -19
-          Font.Name = 'Segoe UI'
-          Font.Pitch = fpVariable
-          Font.Quality = fqDraft
-          Font.Style = [fsBold]
-          ParentColor = False
-          ParentFont = False
         end
         object lbSaldoConta: TLabel
           Left = 208
@@ -176,6 +243,7 @@ object MainForm: TMainForm
           Top = 238
           Width = 743
           Caption = 'Adicionar Nova Saída'
+          OnClick = btAddSaiClick
           TabOrder = 0
         end
         object TabelSai: TStringGrid
@@ -188,29 +256,29 @@ object MainForm: TMainForm
           Columns = <          
             item
               Title.Caption = 'Data'
-              Width = 181
+              Width = 185
             end          
             item
               Title.Caption = 'Identificação'
-              Width = 181
+              Width = 185
             end          
             item
               Title.Caption = 'Conta'
-              Width = 181
+              Width = 185
             end          
             item
               Title.Caption = 'Valor'
-              Width = 181
+              Width = 186
             end>
           FixedCols = 0
           RowCount = 1
           ScrollBars = ssAutoVertical
           TabOrder = 1
           ColWidths = (
-            181
-            181
-            181
-            181
+            185
+            185
+            185
+            186
           )
         end
       end
@@ -246,34 +314,35 @@ object MainForm: TMainForm
           Columns = <          
             item
               Title.Caption = 'Data'
-              Width = 144
+              Width = 148
             end          
             item
               Title.Caption = 'Identificação'
-              Width = 144
+              Width = 148
             end          
             item
               Title.Caption = 'Conta de Saída'
-              Width = 144
+              Width = 148
             end          
             item
               Title.Caption = 'Conta de Entrada'
-              Width = 144
+              Width = 148
             end          
             item
               Title.Caption = 'Valor'
-              Width = 148
+              Width = 149
             end>
           FixedCols = 0
           RowCount = 1
           ScrollBars = ssAutoVertical
           TabOrder = 1
+          OnKeyDown = TabelTransfKeyDown
           ColWidths = (
-            144
-            144
-            144
-            144
             148
+            148
+            148
+            148
+            149
           )
         end
       end
