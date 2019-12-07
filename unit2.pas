@@ -64,7 +64,7 @@ begin
          ShowMessage('Valor de moeda inválido');
          edVal.SetFocus;
          end
-     else if  NOT(TryStrToDate(edData.Text+'/'+edData1.Text+'/'+edData2.Text,data)) then
+     else if  (NOT(TryStrToDate(edData.Text+'/'+edData1.Text+'/'+edData2.Text,data))) then
          begin
          ShowMessage('Valor de data inválida');
          edData.SetFocus;

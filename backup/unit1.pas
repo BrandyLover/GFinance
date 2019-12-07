@@ -86,7 +86,7 @@ begin
       newEntryForm.ShowModal;
       if (newEntryForm.CloseQuery) AND (newEntryForm.AddItemFlag)  then
          begin
-              TabelRecei.InsertRowWithValues(TabelRecei.RowCount,[newEntryForm.edData.Text,newEntryForm.edID.Text,newEntryForm.cbContas.Text,'R$ '+newEntryForm.edVal.Text]);
+              TabelRecei.InsertRowWithValues(TabelRecei.RowCount,[newEntryForm.edData.Text+'/'+newEntryForm.edData1.Text+'/'+newEntryForm.edData2.Text,newEntryForm.edID.Text,newEntryForm.cbContas.Text,'R$ '+newEntryForm.edVal.Text]);
          end;
 
 

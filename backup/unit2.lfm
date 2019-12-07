@@ -1,7 +1,7 @@
 object newEntryForm: TnewEntryForm
-  Left = 627
+  Left = 588
   Height = 162
-  Top = 384
+  Top = 374
   Width = 580
   Caption = 'Adicionar nova entrada'
   ClientHeight = 162
@@ -17,7 +17,7 @@ object newEntryForm: TnewEntryForm
     Caption = 'Adicionar'
     OnClick = btOkClick
     OnKeyDown = FormKeyDown
-    TabOrder = 4
+    TabOrder = 6
   end
   object btCancel: TButton
     Left = 308
@@ -26,7 +26,7 @@ object newEntryForm: TnewEntryForm
     Width = 120
     Caption = 'Cancelar'
     OnClick = btCancelClick
-    TabOrder = 5
+    TabOrder = 7
   end
   object cbContas: TComboBox
     Left = 328
@@ -36,7 +36,7 @@ object newEntryForm: TnewEntryForm
     ItemHeight = 15
     OnKeyDown = FormKeyDown
     ParentShowHint = False
-    TabOrder = 2
+    TabOrder = 4
   end
   object Label1: TLabel
     Left = 330
@@ -52,7 +52,7 @@ object newEntryForm: TnewEntryForm
     Top = 62
     Width = 80
     OnKeyDown = FormKeyDown
-    TabOrder = 3
+    TabOrder = 5
   end
   object edID: TEdit
     Left = 168
@@ -60,7 +60,7 @@ object newEntryForm: TnewEntryForm
     Top = 62
     Width = 152
     OnKeyDown = FormKeyDown
-    TabOrder = 1
+    TabOrder = 3
   end
   object edData: TEdit
     Left = 48
@@ -115,7 +115,7 @@ object newEntryForm: TnewEntryForm
     Top = 62
     Width = 24
     OnKeyDown = FormKeyDown
-    TabOrder = 6
+    TabOrder = 1
   end
   object edData2: TEdit
     Left = 112
@@ -123,7 +123,7 @@ object newEntryForm: TnewEntryForm
     Top = 62
     Width = 40
     OnKeyDown = FormKeyDown
-    TabOrder = 7
+    TabOrder = 2
   end
   object Label6: TLabel
     Left = 48

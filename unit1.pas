@@ -23,6 +23,8 @@ type
     gbConta: TGroupBox;
     gbSai: TGroupBox;
     gbTransf: TGroupBox;
+    Label1: TLabel;
+    lbSaldoConta: TLabel;
     lbConta: TListBox;
     pgGFinance: TPageControl;
     TabelRecei: TStringGrid;
@@ -39,6 +41,8 @@ type
     procedure btDelSelClick(Sender: TObject);
     procedure edNewContaKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
+    procedure Label1Click(Sender: TObject);
+    procedure lbContaSelectionChange(Sender: TObject; User: boolean);
 
     procedure pgGFinanceChange(Sender: TObject);
     procedure TabelReceiKeyDown(Sender: TObject; var Key: Word;
@@ -115,6 +119,19 @@ procedure TMainForm.edNewContaKeyDown(Sender: TObject; var Key: Word;
 begin
   if Key = 13 then
      btAddContaClick(Sender);
+end;
+
+procedure TMainForm.Label1Click(Sender: TObject);
+begin
+
+end;
+
+procedure TMainForm.lbContaSelectionChange(Sender: TObject; User: boolean);
+var
+  ContaSelected : string;
+begin
+  ContaSelected := lbConta.GetSelectedText;
+
 end;
 
 
