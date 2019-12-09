@@ -32,6 +32,7 @@ type
     Label9: TLabel;
     procedure btCancelClick(Sender: TObject);
     procedure btOkClick(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
   private
 
@@ -96,6 +97,11 @@ begin
     NewItemFlag := True;
     Close;
   end;
+end;
+
+procedure TnewTransfForm.FormActivate(Sender: TObject);
+begin
+  NewItemFlag:=False;
 end;
 
 

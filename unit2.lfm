@@ -1,11 +1,13 @@
 object newEntryForm: TnewEntryForm
-  Left = 983
+  Left = 609
   Height = 162
-  Top = 575
+  Top = 478
   Width = 580
   Caption = 'Adicionar nova entrada'
   ClientHeight = 162
   ClientWidth = 580
+  OnActivate = FormCreate
+  OnCreate = FormCreate
   OnKeyDown = FormKeyDown
   ParentBiDiMode = False
   LCLVersion = '1.8.4.0'

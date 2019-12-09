@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ComCtrls, Menus,
-  StdCtrls, ExtCtrls, ValEdit, Grids;
+  StdCtrls, ExtCtrls, ValEdit, Grids, Buttons;
 
 type
 
@@ -27,16 +27,19 @@ type
     gbConta: TGroupBox;
     gbSai: TGroupBox;
     gbTransf: TGroupBox;
+    gbContasBG: TGroupBox;
+    ImageList1: TImageList;
     LbSCS: TLabel;
     lbSaldoSelec: TLabel;
     lbSaldoConta: TLabel;
     lbConta: TListBox;
-    LbSaldoEmConta: TListBox;
-    ListBox1: TListBox;
+    lbContasBG: TListBox;
     pgGFinance: TPageControl;
     TabelRecei: TStringGrid;
     TabelSai: TStringGrid;
     TabelTransf: TStringGrid;
+    ToolBar1: TToolBar;
+    tbNovo: TToolButton;
     TSGeral: TTabSheet;
     TSRecei: TTabSheet;
     TSDespe: TTabSheet;
@@ -51,6 +54,14 @@ type
     procedure BtBGEntradaClick(Sender: TObject);
     procedure BtBGTransfClick(Sender: TObject);
     procedure btDelSelClick(Sender: TObject);
+    procedure FormCloseQuery(Sender: TObject; var CanClose: boolean);
+    procedure FormCreate(Sender: TObject);
+
+    procedure lbContasBGSelectionChange(Sender: TObject; User: boolean);
+    procedure tbNovoClick(Sender: TObject);
+
+    procedure UpdateConta(Sender: TObject);
+    function SaldoTableSearch(Conta: String): Real;
     procedure edNewContaKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
 
@@ -71,6 +82,7 @@ type
 
 var
   MainForm: TMainForm;
+  PreviousSelec: string;
 
 
 implementation
@@ -85,8 +97,6 @@ procedure TMainForm.btAddReceGeralClick(Sender: TObject);
 begin
   pgGFinance.ActivePage:= TSRecei;
 end;
-
-
 
 procedure TMainForm.btAddContaClick(Sender: TObject);
 var
@@ -106,10 +116,16 @@ begin
              ShowMessage('Nome de Conta Já Existente')
           else begin
           lbConta.Items.Add(edNewConta.Text);
+          UpdateConta(Sender);
           ShowMessage('Conta Adicionada');
-          end
-          end
+          end;
+        end;
+     edNewConta.Clear;
+end;
 
+procedure TMainForm.UpdateConta(Sender : TObject);
+begin
+     lbContasBG.Items := lbConta.Items;
 end;
 
 procedure TMainForm.btAddReceitaClick(Sender: TObject);
@@ -126,8 +142,8 @@ begin
       if (newEntryForm.CloseQuery) AND (newEntryForm.AddItemFlag)  then
          begin
               TabelRecei.InsertRowWithValues(TabelRecei.RowCount,[newEntryForm.edData.Text+'/'+newEntryForm.edData1.Text+'/'+newEntryForm.edData2.Text,newEntryForm.edID.Text,newEntryForm.cbContas.Text,'R$ '+newEntryForm.edVal.Text]);
-         end;
 
+         end;
 
 end;
 
@@ -144,7 +160,7 @@ begin
       newExitForm.ShowModal;
       if (newExitForm.CloseQuery) AND (newExitForm.NewItemFlag)  then
          begin
-              TabelSai.InsertRowWithValues(TabelSai.RowCount,[newExitForm.edData.Text+'/'+newExitForm.edData1.Text+'/'+newExitForm.edData2.Text,newExitForm.edID.Text,newExitForm.cbContas.Text,'R$ '+newEntryForm.edVal.Text]);
+              TabelSai.InsertRowWithValues(TabelSai.RowCount,[newExitForm.edData.Text+'/'+newExitForm.edData1.Text+'/'+newExitForm.edData2.Text,newExitForm.edID.Text,newExitForm.cbContas.Text,'R$ '+newExitForm.edVal.Text]);
          end;
 end;
 
@@ -163,6 +179,7 @@ begin
       newTransfForm.ShowModal;
       if (newTransfForm.CloseQuery) AND (newTransfForm.NewItemFlag) then
           TabelTransf.InsertRowWithValues(TabelTransf.RowCount,[newTransfForm.edData.Text+'/'+newTransfForm.edData1.Text+'/'+newTransfForm.edData2.Text,newTransfForm.edID.Text,newTransfForm.cbContaExit.Text,newTransfForm.cbContaEntry.Text,'R$ '+ newTransfForm.edVal.Text]);
+
 end;
 
 procedure TMainForm.btBGContaClick(Sender: TObject);
@@ -193,7 +210,77 @@ end;
 procedure TMainForm.btDelSelClick(Sender: TObject);
 begin
       lbConta.DeleteSelected;
+      UpdateConta(Sender);
 end;
+
+procedure TMainForm.FormCloseQuery(Sender: TObject; var CanClose: boolean);
+begin
+  TabelRecei.SaveToCSVFile('TabelRecei');
+  TabelSai.SaveToCSVFile('TabelSai');
+  TabelTransf.SaveToCSVFile('TabelTransf');
+  lbConta.Items.SaveToFile('Contas');
+
+end;
+
+procedure TMainForm.FormCreate(Sender: TObject);
+begin
+  if NOT FileExists('TabelRecei') then
+     TabelRecei.SaveToCSVFile('TabelRecei')
+  else
+      TabelRecei.LoadFromCSVFile('TabelRecei');
+  if NOT FileExists('TabelSai') then
+     TabelSai.SaveToCSVFile('TabelSai')
+  else
+      TabelSai.LoadFromCSVFile('TabelSai');
+  if NOT FileExists('TabelTransf') then
+     TabelTransf.SaveToCSVFile('TabelTransf')
+  else
+      TabelTransf.LoadFromCSVFile('TabelTransf');
+  if NOT FileExists('Contas') then
+     lbConta.Items.SaveToFile('Contas')
+     else
+         lbConta.Items.LoadFromFile('Contas');
+
+  UpdateConta(Sender);
+end;
+
+
+
+procedure TMainForm.lbContasBGSelectionChange(Sender: TObject; User: boolean);
+var
+  SaldoProcurado: Real;
+begin
+  if lbContasBG.ItemIndex >= 0 then
+     begin
+     SaldoProcurado:=SaldoTableSearch(lbContasBG.Items.Strings[lbContasBG.ItemIndex]);
+     lbSaldoSelec.Caption:='R$ '+FloatToStr(SaldoProcurado);
+     if SaldoProcurado < 0 then
+        lbSaldoSelec.Font.Color:= clRed
+     else if SaldoProcurado = 0 then
+          lbSaldoSelec.Font.Color:=clBlack
+        else
+             lbSaldoSelec.Font.Color:=clGreen;
+
+     end;
+end;
+
+procedure TMainForm.tbNovoClick(Sender: TObject);
+begin
+  if MessageDlg('Novo Arquivo de Registro','Deseja apagar os arquivos salvos e começar um novo arquivo de registro?'+sLineBreak+' AVISO: APAGA TODOS OS DADOS SALVOS!!!',mtConfirmation,[mbYes,mbNo],0) = mrYes then
+     begin
+     TabelRecei.Clear;
+     TabelSai.Clear;
+     TabelTransf.Clear;
+     lbConta.Clear;
+     TabelRecei.SaveToCSVFile('TabelRecei');
+  TabelSai.SaveToCSVFile('TabelSai');
+  TabelTransf.SaveToCSVFile('TabelTransf');
+  lbConta.Items.SaveToFile('Contas');
+  UpdateConta(Sender);
+     end;
+end;
+
+
 
 procedure TMainForm.edNewContaKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
@@ -202,15 +289,76 @@ begin
      btAddContaClick(Sender);
 end;
 
-
-
-procedure TMainForm.lbContaSelectionChange(Sender: TObject; User: boolean);
+function TMainForm.SaldoTableSearch(Conta: String) : Real;
+var
+  Conter : Integer;
+  AccEntry,AccExit,AccTransfEntry,AccTransfExit,Saldo : Real;
 
 begin
+  AccEntry:=0;
+  AccExit:=0;
+  AccTransfEntry:=0;
+  AccTransfExit:=0;
+  for Conter:=0 to TabelRecei.RowCount -1 do begin
+                //AccEntry:=1;
+                if (TabelRecei.Cells[2,Conter].Equals(Conta)) then
+                   begin
+                        //AccEntry:=2;
+                       AccEntry:= AccEntry + StrToFloat(TabelRecei.Cells[3,Conter].Remove(0,3));
+                   end;
+  end;
+  for Conter:=0 to TabelSai.RowCount -1 do begin
+                //AccEntry:=1;
+                if (TabelSai.Cells[2,Conter].Equals(Conta)) then
+                   begin
+                        //AccEntry:=2;
+                       AccExit:= AccExit + StrToFloat(TabelSai.Cells[3,Conter].Remove(0,3));
+                   end;
+  end;
+  for Conter:=0 to TabelTransf.RowCount -1 do begin
+                //AccEntry:=1;
+                if (TabelTransf.Cells[2,Conter].Equals(Conta)) then
+                   begin
+                        //AccEntry:=2;
+                       AccTransfExit:= AccTransfExit + StrToFloat(TabelTransf.Cells[4,Conter].Remove(0,3));
+                   end;
+  end;
+  for Conter:=0 to TabelTransf.RowCount -1 do begin
+                //AccEntry:=1;
+                if (TabelTransf.Cells[3,Conter].Equals(Conta)) then
+                   begin
+                        //AccEntry:=2;
+                       AccTransfEntry:= AccTransfEntry + StrToFloat(TabelTransf.Cells[4,Conter].Remove(0,3));
+                   end;
+  end;
+  Saldo:=AccEntry-AccExit+AccTransfEntry-AccTransfExit;
+  result := Saldo;
+  //ShowMessage(FloatToStr(Saldo));
+
+
+  //ShowMessage(Conta+' '+FloatToStr(AccEntry)+' '+ TabelRecei.Cells[2,Conter]+' '+TabelRecei.Cells[3,Conter]);
 
 end;
 
+procedure TMainForm.lbContaSelectionChange(Sender: TObject; User: boolean);
+var
+   SaldoProcurado: Real;
+begin
+     if lbConta.ItemIndex >= 0 then
+     begin
+     lbContasBG.ItemIndex:=lbConta.ItemIndex;
+     SaldoProcurado:=SaldoTableSearch(lbContasBG.Items.Strings[lbContasBG.ItemIndex]);
+     lbSaldoSelec.Caption:='R$ '+FloatToStr(SaldoProcurado);
+     if SaldoProcurado < 0 then
+        lbSaldoSelec.Font.Color:= clRed
+     else if SaldoProcurado = 0 then
+          lbSaldoSelec.Font.Color:=clBlack
+        else
+             lbSaldoSelec.Font.Color:=clGreen;
 
+     end;
+
+end;
 
 procedure TMainForm.pgGFinanceChange(Sender: TObject);
 begin
@@ -230,10 +378,6 @@ begin
   if Key = 13 then
      btAddTransfClick(Sender);
 end;
-
-
-
-
 
 end.
 
