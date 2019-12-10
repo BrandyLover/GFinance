@@ -215,31 +215,31 @@ end;
 
 procedure TMainForm.FormCloseQuery(Sender: TObject; var CanClose: boolean);
 begin
-  TabelRecei.SaveToCSVFile('TabelRecei');
-  TabelSai.SaveToCSVFile('TabelSai');
-  TabelTransf.SaveToCSVFile('TabelTransf');
-  lbConta.Items.SaveToFile('Contas');
+  TabelRecei.SaveToCSVFile('TabelRecei.savearq');
+  TabelSai.SaveToCSVFile('TabelSai.savearq');
+  TabelTransf.SaveToCSVFile('TabelTransf.savearq');
+  lbConta.Items.SaveToFile('Contas.savearq');
 
 end;
 
 procedure TMainForm.FormCreate(Sender: TObject);
 begin
-  if NOT FileExists('TabelRecei') then
-     TabelRecei.SaveToCSVFile('TabelRecei')
+  if NOT FileExists('TabelRecei.savearq') then
+     TabelRecei.SaveToCSVFile('TabelRecei.savearq')
   else
-      TabelRecei.LoadFromCSVFile('TabelRecei');
-  if NOT FileExists('TabelSai') then
-     TabelSai.SaveToCSVFile('TabelSai')
+      TabelRecei.LoadFromCSVFile('TabelRecei.savearq');
+  if NOT FileExists('TabelSai.savearq') then
+     TabelSai.SaveToCSVFile('TabelSai.savearq')
   else
-      TabelSai.LoadFromCSVFile('TabelSai');
-  if NOT FileExists('TabelTransf') then
-     TabelTransf.SaveToCSVFile('TabelTransf')
+      TabelSai.LoadFromCSVFile('TabelSai.savearq');
+  if NOT FileExists('TabelTransf.savearq') then
+     TabelTransf.SaveToCSVFile('TabelTransf.savearq')
   else
-      TabelTransf.LoadFromCSVFile('TabelTransf');
-  if NOT FileExists('Contas') then
-     lbConta.Items.SaveToFile('Contas')
+      TabelTransf.LoadFromCSVFile('TabelTransf.savearq');
+  if NOT FileExists('Contas.savearq') then
+     lbConta.Items.SaveToFile('Contas.savearq')
      else
-         lbConta.Items.LoadFromFile('Contas');
+         lbConta.Items.LoadFromFile('Contas.savearq');
 
   UpdateConta(Sender);
 end;
@@ -272,10 +272,10 @@ begin
      TabelSai.Clear;
      TabelTransf.Clear;
      lbConta.Clear;
-     TabelRecei.SaveToCSVFile('TabelRecei');
-  TabelSai.SaveToCSVFile('TabelSai');
-  TabelTransf.SaveToCSVFile('TabelTransf');
-  lbConta.Items.SaveToFile('Contas');
+     TabelRecei.SaveToCSVFile('TabelRecei.savearq');
+  TabelSai.SaveToCSVFile('TabelSai.savearq');
+  TabelTransf.SaveToCSVFile('TabelTransf.savearq');
+  lbConta.Items.SaveToFile('Contas.savearq');
   UpdateConta(Sender);
      end;
 end;

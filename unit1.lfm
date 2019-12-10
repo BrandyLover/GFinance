@@ -9,7 +9,7 @@ object MainForm: TMainForm
   ClientWidth = 784
   OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
-  LCLVersion = '1.8.4.0'
+  LCLVersion = '2.0.4.0'
   object pgGFinance: TPageControl
     Left = 0
     Height = 347
@@ -141,19 +141,19 @@ object MainForm: TMainForm
           Columns = <          
             item
               Title.Caption = 'Data'
-              Width = 99
+              Width = 95
             end          
             item
               Title.Caption = 'Identificação'
-              Width = 99
+              Width = 95
             end          
             item
               Title.Caption = 'Conta'
-              Width = 99
+              Width = 95
             end          
             item
               Title.Caption = 'Valor'
-              Width = 100
+              Width = 95
             end>
           FixedCols = 0
           RowCount = 1
@@ -161,10 +161,10 @@ object MainForm: TMainForm
           TabOrder = 1
           OnKeyDown = TabelReceiKeyDown
           ColWidths = (
-            99
-            99
-            99
-            100
+            95
+            95
+            95
+            95
           )
         end
       end
@@ -261,29 +261,29 @@ object MainForm: TMainForm
           Columns = <          
             item
               Title.Caption = 'Data'
-              Width = 185
+              Width = 181
             end          
             item
               Title.Caption = 'Identificação'
-              Width = 185
+              Width = 181
             end          
             item
               Title.Caption = 'Conta'
-              Width = 185
+              Width = 181
             end          
             item
               Title.Caption = 'Valor'
-              Width = 186
+              Width = 181
             end>
           FixedCols = 0
           RowCount = 1
           ScrollBars = ssAutoVertical
           TabOrder = 1
           ColWidths = (
-            185
-            185
-            185
-            186
+            181
+            181
+            181
+            181
           )
         end
       end
@@ -319,23 +319,23 @@ object MainForm: TMainForm
           Columns = <          
             item
               Title.Caption = 'Data'
-              Width = 148
+              Width = 144
             end          
             item
               Title.Caption = 'Identificação'
-              Width = 148
+              Width = 144
             end          
             item
               Title.Caption = 'Conta de Saída'
-              Width = 148
+              Width = 144
             end          
             item
               Title.Caption = 'Conta de Entrada'
-              Width = 148
+              Width = 144
             end          
             item
               Title.Caption = 'Valor'
-              Width = 149
+              Width = 148
             end>
           FixedCols = 0
           RowCount = 1
@@ -343,11 +343,11 @@ object MainForm: TMainForm
           TabOrder = 1
           OnKeyDown = TabelTransfKeyDown
           ColWidths = (
+            144
+            144
+            144
+            144
             148
-            148
-            148
-            148
-            149
           )
         end
       end
