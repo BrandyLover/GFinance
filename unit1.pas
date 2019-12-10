@@ -164,22 +164,7 @@ begin
          end;
 end;
 
-procedure TMainForm.btAddSaiClick(Sender: TObject);
-begin
-      newExitForm.edVal.Clear;
-      newExitForm.edID.Clear;
-      newExitForm.edData.Clear;
-      newExitForm.edData1.Clear;
-      newExitForm.edData2.Clear;
-      newExitForm.cbContas.Items:=lbConta.Items;
-      newExitForm.cbContas.ItemIndex:=0;
-      newExitForm.cbContas.Style:=csDropDownList;
-      newExitForm.ShowModal;
-      if (newExitForm.CloseQuery) AND (newExitForm.NewItemFlag)  then
-         begin
-              TabelSai.InsertRowWithValues(TabelSai.RowCount,[newExitForm.edData.Text+'/'+newExitForm.edData1.Text+'/'+newExitForm.edData2.Text,newExitForm.edID.Text,newExitForm.cbContas.Text,'R$ '+newExitForm.edVal.Text]);
-         end;
-end;
+
 
 procedure TMainForm.btAddTransfClick(Sender: TObject);
 begin

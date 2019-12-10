@@ -1,4 +1,5 @@
 # Lazarus compiler-generated binaries (safe to delete)
+PIH.exe
 *.exe
 *.dll
 *.so
@@ -30,3 +31,5 @@ lib/
 *.app/
 
 *.savearq
+*.exe
+*.lps
