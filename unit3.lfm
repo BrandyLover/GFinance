@@ -1,11 +1,12 @@
 object newTransfForm: TnewTransfForm
-  Left = 928
-  Height = 161
-  Top = 579
+  Left = 610
+  Height = 162
+  Top = 476
   Width = 670
   Caption = 'Adicionar nova transferência'
-  ClientHeight = 161
+  ClientHeight = 162
   ClientWidth = 670
+  OnActivate = FormActivate
   OnKeyDown = FormKeyDown
   LCLVersion = '1.8.4.0'
   object btOk: TButton

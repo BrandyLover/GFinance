@@ -1,29 +1,117 @@
 object MainForm: TMainForm
-  Left = 853
-  Height = 339
-  Top = 488
+  Left = 565
+  Height = 373
+  Top = 350
   Width = 784
   BorderStyle = bsSingle
   Caption = 'GFinance'
-  ClientHeight = 339
+  ClientHeight = 373
   ClientWidth = 784
-  LCLVersion = '1.8.4.0'
+  OnCloseQuery = FormCloseQuery
+  OnCreate = FormCreate
+  LCLVersion = '2.0.4.0'
   object pgGFinance: TPageControl
     Left = 0
-    Height = 339
-    Top = 0
+    Height = 347
+    Top = 26
     Width = 784
-    ActivePage = TSDespe
+    ActivePage = TSGeral
     Align = alClient
-    TabIndex = 2
+    TabIndex = 0
     TabOrder = 0
     OnChange = pgGFinanceChange
     object TSGeral: TTabSheet
       Caption = 'Balanço Geral'
+      ClientHeight = 319
+      ClientWidth = 776
+      object LbSCS: TLabel
+        Left = 216
+        Height = 25
+        Top = 40
+        Width = 251
+        Caption = 'Saldo da Conta Selecionada:'
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -19
+        Font.Name = 'Segoe UI'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        Font.Style = [fsBold]
+        ParentColor = False
+        ParentFont = False
+      end
+      object lbSaldoSelec: TLabel
+        Left = 473
+        Height = 1
+        Top = 40
+        Width = 1
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -19
+        Font.Name = 'Segoe UI'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        Font.Style = [fsBold]
+        ParentColor = False
+        ParentFont = False
+      end
+      object BtBGTransf: TButton
+        Left = 232
+        Height = 25
+        Top = 112
+        Width = 123
+        Caption = 'Nova Transferência'
+        OnClick = BtBGTransfClick
+        TabOrder = 0
+      end
+      object BtBGDespesa: TButton
+        Left = 232
+        Height = 25
+        Top = 144
+        Width = 123
+        Caption = 'Nova Despesa'
+        OnClick = BtBGDespesaClick
+        TabOrder = 1
+      end
+      object BtBGEntrada: TButton
+        Left = 232
+        Height = 25
+        Top = 176
+        Width = 123
+        Caption = 'Nova Entrada'
+        OnClick = BtBGEntradaClick
+        TabOrder = 2
+      end
+      object btBGConta: TButton
+        Left = 232
+        Height = 25
+        Top = 208
+        Width = 123
+        Caption = 'Nova Conta'
+        OnClick = btBGContaClick
+        TabOrder = 3
+      end
+      object gbContasBG: TGroupBox
+        Left = 24
+        Height = 257
+        Top = 16
+        Width = 185
+        Caption = 'Contas'
+        ClientHeight = 237
+        ClientWidth = 181
+        TabOrder = 4
+        object lbContasBG: TListBox
+          Left = 8
+          Height = 232
+          Top = 0
+          Width = 164
+          ItemHeight = 0
+          OnSelectionChange = lbContasBGSelectionChange
+          TabOrder = 0
+        end
+      end
     end
     object TSRecei: TTabSheet
       Caption = 'Entradas'
-      ClientHeight = 311
+      ClientHeight = 305
       ClientWidth = 776
       object gbRecei: TGroupBox
         Left = 8
@@ -53,19 +141,19 @@ object MainForm: TMainForm
           Columns = <          
             item
               Title.Caption = 'Data'
-              Width = 99
+              Width = 95
             end          
             item
               Title.Caption = 'Identificação'
-              Width = 99
+              Width = 95
             end          
             item
               Title.Caption = 'Conta'
-              Width = 99
+              Width = 95
             end          
             item
               Title.Caption = 'Valor'
-              Width = 100
+              Width = 95
             end>
           FixedCols = 0
           RowCount = 1
@@ -73,10 +161,10 @@ object MainForm: TMainForm
           TabOrder = 1
           OnKeyDown = TabelReceiKeyDown
           ColWidths = (
-            99
-            99
-            99
-            100
+            95
+            95
+            95
+            95
           )
         end
       end
@@ -143,7 +231,7 @@ object MainForm: TMainForm
     end
     object TSDespe: TTabSheet
       Caption = 'Saídas'
-      ClientHeight = 311
+      ClientHeight = 305
       ClientWidth = 776
       object gbSai: TGroupBox
         Left = 8
@@ -173,36 +261,36 @@ object MainForm: TMainForm
           Columns = <          
             item
               Title.Caption = 'Data'
-              Width = 185
+              Width = 181
             end          
             item
               Title.Caption = 'Identificação'
-              Width = 185
+              Width = 181
             end          
             item
               Title.Caption = 'Conta'
-              Width = 185
+              Width = 181
             end          
             item
               Title.Caption = 'Valor'
-              Width = 186
+              Width = 181
             end>
           FixedCols = 0
           RowCount = 1
           ScrollBars = ssAutoVertical
           TabOrder = 1
           ColWidths = (
-            185
-            185
-            185
-            186
+            181
+            181
+            181
+            181
           )
         end
       end
     end
     object TSTransfe: TTabSheet
       Caption = 'Transferências'
-      ClientHeight = 311
+      ClientHeight = 313
       ClientWidth = 776
       object gbTransf: TGroupBox
         Left = 8
@@ -231,23 +319,23 @@ object MainForm: TMainForm
           Columns = <          
             item
               Title.Caption = 'Data'
-              Width = 148
+              Width = 144
             end          
             item
               Title.Caption = 'Identificação'
-              Width = 148
+              Width = 144
             end          
             item
               Title.Caption = 'Conta de Saída'
-              Width = 148
+              Width = 144
             end          
             item
               Title.Caption = 'Conta de Entrada'
-              Width = 148
+              Width = 144
             end          
             item
               Title.Caption = 'Valor'
-              Width = 149
+              Width = 148
             end>
           FixedCols = 0
           RowCount = 1
@@ -255,14 +343,103 @@ object MainForm: TMainForm
           TabOrder = 1
           OnKeyDown = TabelTransfKeyDown
           ColWidths = (
+            144
+            144
+            144
+            144
             148
-            148
-            148
-            148
-            149
           )
         end
       end
     end
+  end
+  object ToolBar1: TToolBar
+    Left = 0
+    Height = 26
+    Top = 0
+    Width = 784
+    Caption = 'ToolBar1'
+    Images = ImageList1
+    Indent = 750
+    TabOrder = 1
+    object tbNovo: TToolButton
+      Left = 750
+      Top = 2
+      Caption = 'NewFile'
+      ImageIndex = 0
+      OnClick = tbNovoClick
+    end
+  end
+  object ImageList1: TImageList
+    Height = 23
+    Width = 22
+    left = 720
+    top = 64
+    Bitmap = {
+      4C69010000001600000017000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00030303FF0000
+      00FFFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF00FFFFFF00FFFFFF000D0D0DFFFFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF00FFFFFF00FFFFFF00000000FFFFFFFF00000000FFFFFFFF00FFFF
+      FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF00000000FFFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00A9A9
+      A9FF030303FFFFFFFF00FFFFFF00000000FFFFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF000000
+      00FFFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00030303FFFFFFFF00FFFF
+      FF00FFFFFF00000000FFFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00000000FFFFFFFF00FFFF
+      FF00FFFFFF00FFFFFF00141414FF000000FF000000FF000000FF000000FFFFFF
+      FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF00FFFFFF00FFFFFF00000000FFFFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00000000FFFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF00000000FFFFFFFF00FFFFFF00FFFFFF00FFFFFF00000000FFFFFF
+      FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF000000
+      00FFFFFFFF00FFFFFF00FFFFFF00FFFFFF00000000FFFFFFFF00FFFFFF00B6B6
+      B6FF000000FF000000FF000000FF000000FF000000FF000000FF1D1D1DFFFFFF
+      FF00000000FF1D1D1DFFFFFFFF00FFFFFF00FFFFFF00000000FFFFFFFF00FFFF
+      FF00FFFFFF00FFFFFF00000000FFFFFFFF00FFFFFF00B5B5B5FF000000FF0000
+      00FF000000FF000000FF000000FF000000FF000000FFB6B6B6FFFFFFFF00FFFF
+      FF00FFFFFF00FFFFFF00FFFFFF00000000FFFFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00000000FFFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF00000000FFFFFFFF00FFFFFF00FFFFFF00FFFFFF00000000FFFFFF
+      FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF000000
+      00FFFFFFFF00FFFFFF00FFFFFF00FFFFFF00000000FFFFFFFF00FFFFFF00FFFF
+      FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00000000FFFFFFFF00FFFF
+      FF00FFFFFF00FFFFFF00000000FFFFFFFF00FFFFFF001C1C1CFF000000FF0000
+      00FF000000FF000000FF000000FF000000FFFFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF00000000FFFEFEFEFF000000FFFFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00000000FFFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00000000FF000000FFFFFF
+      FF00000000FF323232FF292929FFFFFFFF00FFFFFF00FFFFFF00000000FFFFFF
+      FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF00B1B1B1FF000000FFFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00030303FF000000FFFFFFFF00FFFFFF00000000FFFFFFFF00FFFFFF00FFFF
+      FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00C3C3C3FFFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF000000
+      00FFFFFFFF00FFFFFF00000000FFFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00000000FFFFFFFF00FFFF
+      FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00161616FFCDCDCDFFFFFF
+      FF00000000FFFFFFFF001D1D1DFFFFFFFF00FFFFFF00FFFFFF00FFFFFF001C1C
+      1CFFFFFFFF001C1C1CFFFFFFFF00000000FFF7F7F7FFFFFFFF00FFFFFF00FFFF
+      FF00FFFFFF00FFFFFF00FFFFFF00000000FFFFFFFF00FFFFFF00000000FFFFFF
+      FF001D1D1DFFFFFFFF00FFFFFF00FFFFFF00FFFFFF001C1C1CFFFFFFFF001C1C
+      1CFFFFFFFF00EDEDEDFFF5F5F5FFFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF00000000FFFFFFFF00FFFFFF00949494FF000000FF000000FF0000
+      00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
+      00FF000000FFE6E6E6FFFFFFFF00FFFFFF00FFFFFF00FFFFFF00000000FFD3D3
+      D3FFFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF000000
+      00FF000000FFD8D8D8FF000000FF000000FF7C7C7CFFFFFFFF00FFFFFF00FFFF
+      FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00CDCD
+      CDFFFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
+    }
   end
 end

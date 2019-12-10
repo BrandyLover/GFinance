@@ -1,11 +1,12 @@
 object newExitForm: TnewExitForm
-  Left = 982
+  Left = 610
   Height = 162
-  Top = 577
+  Top = 475
   Width = 580
   Caption = 'Adicionar nova saída'
   ClientHeight = 162
   ClientWidth = 580
+  OnActivate = FormActivate
   OnKeyDown = FormKeyDown
   LCLVersion = '1.8.4.0'
   object btOk: TButton
@@ -15,7 +16,7 @@ object newExitForm: TnewExitForm
     Width = 120
     Caption = 'Adicionar'
     OnClick = btOkClick
-    TabOrder = 0
+    TabOrder = 6
   end
   object btCancel: TButton
     Left = 308
@@ -24,7 +25,7 @@ object newExitForm: TnewExitForm
     Width = 120
     Caption = 'Cancelar'
     OnClick = btCancelClick
-    TabOrder = 1
+    TabOrder = 7
   end
   object cbContas: TComboBox
     Left = 328
@@ -34,7 +35,7 @@ object newExitForm: TnewExitForm
     ItemHeight = 15
     OnKeyDown = FormKeyDown
     ParentShowHint = False
-    TabOrder = 2
+    TabOrder = 4
   end
   object Label1: TLabel
     Left = 330
@@ -50,7 +51,7 @@ object newExitForm: TnewExitForm
     Top = 62
     Width = 80
     OnKeyDown = FormKeyDown
-    TabOrder = 3
+    TabOrder = 5
   end
   object edID: TEdit
     Left = 168
@@ -58,7 +59,7 @@ object newExitForm: TnewExitForm
     Top = 62
     Width = 152
     OnKeyDown = FormKeyDown
-    TabOrder = 4
+    TabOrder = 3
   end
   object edData: TEdit
     Left = 48
@@ -66,7 +67,7 @@ object newExitForm: TnewExitForm
     Top = 62
     Width = 24
     OnKeyDown = FormKeyDown
-    TabOrder = 5
+    TabOrder = 0
   end
   object Label2: TLabel
     Left = 168
@@ -113,7 +114,7 @@ object newExitForm: TnewExitForm
     Top = 62
     Width = 24
     OnKeyDown = FormKeyDown
-    TabOrder = 6
+    TabOrder = 1
   end
   object edData2: TEdit
     Left = 112
@@ -121,7 +122,7 @@ object newExitForm: TnewExitForm
     Top = 62
     Width = 40
     OnKeyDown = FormKeyDown
-    TabOrder = 7
+    TabOrder = 2
   end
   object Label6: TLabel
     Left = 48

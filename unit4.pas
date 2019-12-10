@@ -30,6 +30,7 @@ type
     Label8: TLabel;
     procedure btCancelClick(Sender: TObject);
     procedure btOkClick(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
   private
 
@@ -83,6 +84,11 @@ begin
      Close;
      end;
 
+end;
+
+procedure TnewExitForm.FormActivate(Sender: TObject);
+begin
+  NewItemFlag:=False;
 end;
 
 procedure TnewExitForm.btCancelClick(Sender: TObject);
